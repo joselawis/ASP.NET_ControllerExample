@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ControllersExample.Models
-    ;
+using ControllersExample.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,13 +25,26 @@ namespace ControllersExample.Controllers
                 LastName = "Smith",
                 Age = 25
             };
-            return new JsonResult(person);
+            return Json(person);
         }
 
-        [Route("contact-us/{mobile:regex(^\\d{{9}}$)}")]
-        public string Contact()
+        [Route("file-download")]
+        public VirtualFileResult FileDownload()
         {
-            return "Hello from Contact";
+            return File("/header.jpeg", "image/jpeg");
+        }
+
+        [Route("file-download2")]
+        public PhysicalFileResult FileDownload2()
+        {
+            return PhysicalFile(@"/Users/joseluiscontreras/aspnetcore/ControllersExample/ControllersExample/wwwroot/header.jpeg", "image/jpeg");
+        }
+
+        [Route("file-download3")]
+        public FileContentResult FileDownload3()
+        {
+            byte[] bytes = System.IO.File.ReadAllBytes(@"/Users/joseluiscontreras/aspnetcore/ControllersExample/ControllersExample/wwwroot/header.jpeg");
+            return File(bytes, "image/jpeg");
         }
     }
 }
