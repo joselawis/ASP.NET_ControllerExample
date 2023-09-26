@@ -41,7 +41,7 @@ namespace ControllersExample.Controllers
         }
 
         [Route("file-download3")]
-        public FileContentResult FileDownload3()
+        public IActionResult FileDownload3()
         {
             byte[] bytes = System.IO.File.ReadAllBytes(@"/Users/joseluiscontreras/aspnetcore/ControllersExample/ControllersExample/wwwroot/header.jpeg");
             return File(bytes, "image/jpeg");
