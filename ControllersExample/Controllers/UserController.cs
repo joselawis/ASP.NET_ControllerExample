@@ -1,20 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using ControllersExample.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace ControllersExample.Controllers
 {
     [Route("user")]
     public class UserController : Controller
-    {   
+    {
         [Route("register")]
         public IActionResult Index(User user)
         {
+            if (!ModelState.IsValid)
+            {
+                string errors = string.Join("\n",
+                    ModelState.Values
+                        .SelectMany(value => value.Errors)
+                        .Select(err => err.ErrorMessage));
+                return BadRequest(errors);
+            }
             return Content($"{user}");
         }
     }
