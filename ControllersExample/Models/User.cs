@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ControllersExample.CustomValidators;
 
 namespace ControllersExample.Models
 {
@@ -28,9 +29,12 @@ namespace ControllersExample.Models
         [Range(0, 999.99, ErrorMessage = "{0} should be between €{1} and €{2}")]
         public double? Price { get; set; }
 
+        [MinimumYearValidator(2000, ErrorMessage = "{0} should not be after Jan 01, {1}")]
+        public DateTime? DateOfBirth { get; set; }
+
         public override string ToString()
         {
-            return $"User object - Person name: {PersonName}, Email: {Email}, Phone: {Phone}, Password: {Password}, Confirm Password: {ConfirmPassword}, Price: {Price}";
+            return $"User object - Person name: {PersonName}, Email: {Email}, Phone: {Phone}, Password: {Password}, Confirm Password: {ConfirmPassword}, Price: {Price}, Date Of Birth: {DateOfBirth}";
         }
     }
 }
