@@ -1,3 +1,4 @@
+using ControllersExample.CustomModelBinders;
 using ControllersExample.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,9 @@ namespace ControllersExample.Controllers
     public class UserController : Controller
     {
         [Route("register")]
-        public IActionResult Index([FromBody] UserPerson user)
+        public IActionResult Index([FromBody]
+        // [ModelBinder(BinderType =typeof(PersonModelBinder))]
+        UserPerson user)
         {
             if (!ModelState.IsValid)
             {
