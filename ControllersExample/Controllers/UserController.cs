@@ -7,7 +7,7 @@ namespace ControllersExample.Controllers
     public class UserController : Controller
     {
         [Route("register")]
-        public IActionResult Index(User user)
+        public IActionResult Index([FromBody] UserPerson user)
         {
             if (!ModelState.IsValid)
             {
