@@ -12,7 +12,8 @@ namespace ControllersExample.CustomModelBinders
     {
         public IModelBinder? GetBinder(ModelBinderProviderContext context)
         {
-            if(context.Metadata.ModelType == typeof(UserPerson)){
+            if (context.Metadata.ModelType == typeof(UserPerson))
+            {
                 return new BinderTypeModelBinder(typeof(PersonModelBinder));
             }
             return null;

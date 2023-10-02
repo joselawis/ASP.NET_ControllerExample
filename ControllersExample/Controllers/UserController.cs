@@ -10,7 +10,8 @@ namespace ControllersExample.Controllers
         [Route("register")]
         public IActionResult Index([FromBody]
         // [ModelBinder(BinderType =typeof(PersonModelBinder))]
-        UserPerson user)
+        UserPerson user,
+        [FromHeader(Name = "User-agent")] string userAgent)
         {
             if (!ModelState.IsValid)
             {
@@ -20,7 +21,7 @@ namespace ControllersExample.Controllers
                         .Select(err => err.ErrorMessage));
                 return BadRequest(errors);
             }
-            return Content($"{user}");
+            return Content($"{user}\n {userAgent}");
         }
     }
 }

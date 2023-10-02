@@ -42,6 +42,8 @@ namespace ControllersExample.Models
 
         public int? Age { get; set; }
 
+        public List<string?> Tags { get; set; } = new List<string?>();
+
         public override string ToString()
         {
             return $"User object - Person name: {PersonName}, Email: {Email}, Phone: {Phone}, Password: {Password}, Confirm Password: {ConfirmPassword}, Price: {Price}, Date Of Birth: {DateOfBirth}";
